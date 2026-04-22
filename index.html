@@ -35,6 +35,13 @@
     -webkit-font-smoothing: antialiased;
     font-feature-settings: 'ss01', 'cv01';
   }
+  body::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(124,255,176,0.08), transparent 60%),
+      radial-gradient(ellipse 700px 400px at 90% 5%, rgba(165,180,252,0.06), transparent 55%);
+  }
+  nav, header, section, footer { position: relative; z-index: 1; }
   code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
   a { color: var(--accent); text-decoration: none; transition: opacity 0.15s; }
   a:hover { opacity: 0.8; }
@@ -83,7 +90,7 @@
     100% { box-shadow: 0 0 0 0 rgba(124,255,176,0); }
   }
   h1 {
-    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-size: clamp(2.25rem, 5vw, 3.85rem);
     font-weight: 800;
     letter-spacing: -0.035em;
     line-height: 1.05;
@@ -97,7 +104,7 @@
     margin-bottom: 2rem;
   }
   .hero-sub strong { color: var(--text); font-weight: 600; }
-  .hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
   .btn {
     display: inline-flex; align-items: center; gap: 0.5rem;
     padding: 0.75rem 1.25rem;
@@ -105,18 +112,23 @@
     font-weight: 600; font-size: 0.9rem;
     transition: all 0.15s;
     border: 1px solid transparent;
+    cursor: pointer;
   }
   .btn-primary { background: var(--accent); color: #0b0d12 !important; }
   .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
   .btn-secondary { background: transparent; color: var(--text) !important; border-color: var(--border-strong); }
   .btn-secondary:hover { border-color: var(--text-muted); }
+  .hero-note {
+    font-size: 0.825rem; color: var(--text-dim);
+    margin-left: 0.25rem;
+  }
 
   /* STATS */
   .stats {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     padding: 2.5rem 0;
-    margin: 2rem 0 0;
+    margin: 2.5rem 0 0;
   }
   .stats-grid {
     display: grid;
@@ -134,6 +146,32 @@
     font-size: 0.825rem; color: var(--text-muted);
     line-height: 1.4;
   }
+
+  /* LOGO STRIP */
+  .logo-strip {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo-strip-label {
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-dim); text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .logos {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    align-items: center; gap: 2.25rem 2.75rem;
+  }
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    opacity: 0.75;
+    transition: opacity 0.2s, color 0.2s;
+    letter-spacing: -0.01em;
+  }
+  .logo:hover { opacity: 1; color: var(--text); }
 
   /* SECTIONS */
   section { padding: 5rem 0; }
@@ -157,6 +195,60 @@
     margin-bottom: 3rem;
     font-size: 1.025rem;
   }
+
+  /* GUARANTEE CALLOUT */
+  .guarantee {
+    background: linear-gradient(135deg, rgba(124,255,176,0.08), rgba(165,180,252,0.05));
+    border: 1px solid rgba(124,255,176,0.25);
+    border-radius: 14px;
+    padding: 1.75rem 2rem;
+    margin-top: 2.5rem;
+    display: flex; gap: 1.25rem; align-items: flex-start;
+  }
+  .guarantee-icon {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: rgba(124,255,176,0.12);
+    border: 1px solid rgba(124,255,176,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+  }
+  .guarantee-body h4 {
+    font-size: 1.05rem; font-weight: 700;
+    margin-bottom: 0.35rem; color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .guarantee-body p { color: var(--text-muted); font-size: 0.925rem; line-height: 1.55; }
+  .guarantee-body p strong { color: var(--accent); font-weight: 600; }
+
+  /* HOW I WORK */
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .diff {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .diff:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .diff-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem; color: var(--accent);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  .diff h4 {
+    font-size: 1.1rem; font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+  .diff p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.55; }
 
   /* CASE STUDIES */
   .cases { display: grid; gap: 1.25rem; }
@@ -215,6 +307,119 @@
   }
   .case-links a { font-weight: 500; }
 
+  /* PROCESS TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin-top: 2rem;
+  }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 7px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--border) 30%);
+  }
+  .tl-item {
+    position: relative;
+    padding-bottom: 1.75rem;
+  }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: ''; position: absolute;
+    left: -2rem; top: 6px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+  .tl-step {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+  .tl-item h4 {
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.01em;
+  }
+  .tl-item p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.55; }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .price-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem 1.75rem;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+  }
+  .price-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .price-card.featured {
+    border-color: rgba(124,255,176,0.35);
+    background: linear-gradient(180deg, rgba(124,255,176,0.04), var(--bg-card) 40%);
+  }
+  .price-badge {
+    position: absolute; top: -10px; right: 1.5rem;
+    background: var(--accent); color: #0b0d12;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.25rem 0.65rem; border-radius: 99px;
+  }
+  .price-card h4 {
+    font-size: 1.1rem; font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.35rem;
+  }
+  .price-card .price-desc {
+    color: var(--text-muted); font-size: 0.875rem;
+    line-height: 1.5; margin-bottom: 1.25rem;
+  }
+  .price-amount {
+    display: flex; align-items: baseline; gap: 0.4rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-from {
+    font-size: 0.75rem; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+  .price-num {
+    font-size: 2rem; font-weight: 800;
+    color: var(--text); letter-spacing: -0.025em;
+    line-height: 1;
+  }
+  .price-unit { color: var(--text-muted); font-size: 0.9rem; }
+  .price-list {
+    list-style: none; padding: 0; margin: 0 0 1.5rem;
+    flex-grow: 1;
+  }
+  .price-list li {
+    font-size: 0.875rem; color: var(--text-muted);
+    padding: 0.4rem 0 0.4rem 1.5rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .price-list li::before {
+    content: '✓'; position: absolute; left: 0; top: 0.4rem;
+    color: var(--accent); font-weight: 700;
+  }
+  .price-card .btn { justify-content: center; }
+  .pricing-note {
+    text-align: center; margin-top: 1.5rem;
+    font-size: 0.875rem; color: var(--text-dim);
+  }
+  .pricing-note a { font-weight: 500; }
+
   /* BYLINES */
   .bylines {
     display: grid;
@@ -228,9 +433,9 @@
     border-radius: 10px;
     padding: 1.15rem 1.25rem;
     display: flex; flex-direction: column; gap: 0.35rem;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, transform 0.2s;
   }
-  .byline:hover { border-color: var(--border-strong); }
+  .byline:hover { border-color: var(--border-strong); transform: translateY(-1px); }
   .byline-name {
     font-weight: 600; color: var(--text); font-size: 0.95rem;
   }
@@ -267,6 +472,17 @@
     border-radius: 14px;
     padding: 2.5rem;
     margin-top: 2rem;
+    position: relative;
+  }
+  .testimonial-block::before {
+    content: '"';
+    position: absolute;
+    top: -0.5rem; left: 1.75rem;
+    font-size: 4rem;
+    font-family: Georgia, serif;
+    color: var(--accent);
+    line-height: 1;
+    opacity: 0.6;
   }
   .testimonial {
     font-size: 1.05rem; color: var(--text);
@@ -277,13 +493,52 @@
     font-size: 0.825rem; color: var(--text-muted);
   }
 
+  /* FAQ */
+  .faq-list {
+    display: grid; gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .faq {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .faq summary {
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.975rem;
+    list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem;
+    transition: color 0.15s;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: '+';
+    font-size: 1.25rem;
+    color: var(--accent);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .faq[open] summary::after { transform: rotate(45deg); }
+  .faq summary:hover { color: var(--accent); }
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem;
+    color: var(--text-muted);
+    font-size: 0.925rem;
+    line-height: 1.6;
+  }
+  .faq-answer p + p { margin-top: 0.75rem; }
+
   /* CTA FOOTER */
   .cta-footer {
     text-align: center;
     padding: 5rem 0;
     border-top: 1px solid var(--border);
   }
-  .cta-footer h2 { margin-bottom: 1rem; }
+  .cta-footer h2 { margin-bottom: 1rem; max-width: 720px; margin-left: auto; margin-right: auto; }
   .cta-footer p { color: var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem; }
   .cta-buttons { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
 
@@ -298,7 +553,7 @@
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 1rem;
   }
-  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
   .footer-links a { color: var(--text-dim); }
   .footer-links a:hover { color: var(--text); opacity: 1; }
 
@@ -310,9 +565,14 @@
     .case-grid { grid-template-columns: 1fr; gap: 1rem; }
     .bylines { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
+    .diff-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
     .nav-links a:not(.nav-cta) { display: none; }
     .case { padding: 1.5rem; }
     .testimonial-block { padding: 1.75rem; }
+    .guarantee { flex-direction: column; gap: 1rem; padding: 1.5rem; }
+    .logos { gap: 1.25rem 1.75rem; }
+    .logo { font-size: 0.85rem; }
   }
 </style>
 </head>
@@ -323,8 +583,9 @@
     <div class="nav-brand">Emmanuel Oyibo<span class="dot">.</span></div>
     <div class="nav-links">
       <a href="#work">Work</a>
-      <a href="#bylines">Bylines</a>
-      <a href="#services">Services</a>
+      <a href="#how">Process</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
       <a href="https://www.upwork.com/freelancers/~014ca5dc3609848174" class="nav-cta">Hire me</a>
     </div>
   </div>
@@ -334,15 +595,16 @@
   <div class="container">
     <div class="hero-kicker">
       <span class="pulse"></span>
-      Open to new retainers — April 2026
+      <span>Currently accepting new retainers &middot; <span id="availability-date">updating…</span></span>
     </div>
     <h1>Technical writing for <span class="accent">AI/ML and DevOps</span> products that developers actually finish.</h1>
     <p class="hero-sub">
-      I'm Emmanuel, a technical writer with 5+ years documenting infrastructure, LLM workflows, and developer platforms. I <strong>build every tutorial before I write it</strong> — which is why my first-submission editorial approval rate is 95%+ and my work has moved real metrics for clients like Cherry Servers and MCPevals.
+      I'm Emmanuel — a technical writer with 5+ years documenting infrastructure, LLM workflows, and developer platforms. I <strong>build every tutorial before I write it</strong>, which is why my first-submission editorial approval rate is 95%+ and my work has moved real metrics for clients like Cherry Servers and MCPevals.
     </p>
     <div class="hero-ctas">
-      <a href="https://www.upwork.com/freelancers/~014ca5dc3609848174" class="btn btn-primary">Hire me on Upwork →</a>
-      <a href="mailto:oyiboemmanuel2394@gmail.com" class="btn btn-secondary">Email me</a>
+      <a href="https://www.upwork.com/freelancers/~014ca5dc3609848174" class="btn btn-primary">Hire me on Upwork &rarr;</a>
+      <a href="#pricing" class="btn btn-secondary">See pricing</a>
+      <span class="hero-note">Response in 0–4 hrs</span>
     </div>
   </div>
   <div class="stats">
@@ -358,7 +620,7 @@
         </div>
         <div>
           <div class="stat-num">30%</div>
-          <div class="stat-label">organic traffic lift on the Cherry Servers blog (2025)</div>
+          <div class="stat-label">organic traffic lift on the Cherry Servers blog</div>
         </div>
         <div>
           <div class="stat-num">40%</div>
@@ -368,6 +630,22 @@
     </div>
   </div>
 </header>
+
+<div class="logo-strip">
+  <div class="container">
+    <div class="logo-strip-label">Trusted by developer-platform teams including</div>
+    <div class="logos">
+      <a href="https://www.baeldung.com/author/emmanueloyibo" class="logo">Baeldung</a>
+      <a href="https://docs.vultr.com/author/emmanuel-oyibo" class="logo">Vultr</a>
+      <a href="https://www.cherryservers.com/blog/authors/emmanuel-oyibo" class="logo">Cherry Servers</a>
+      <a href="https://smythos.com/people/emmanuel-oyibo/" class="logo">SmythOS</a>
+      <a href="https://www.mcpevals.io/" class="logo">MCPevals</a>
+      <a href="https://www.warp.dev/terminus" class="logo">Warp</a>
+      <a href="https://hostman.com/tutorials/authors/emmanuel-oyibo/" class="logo">Hostman</a>
+      <a href="https://linuxopsys.com/author/emmanuelo" class="logo">LinuxOpSys</a>
+    </div>
+  </div>
+</div>
 
 <section id="work">
   <div class="container">
@@ -382,7 +660,7 @@
       <article class="case">
         <div class="case-meta">
           <span class="case-platform">Baeldung</span>
-          <span class="case-tag">DevOps · decision framework · 10M+ monthly readers</span>
+          <span class="case-tag">DevOps &middot; decision framework &middot; 10M+ monthly readers</span>
         </div>
         <h3>CI/CD Best Practices — a cornerstone reference for senior engineers designing pipelines</h3>
         <div class="case-grid">
@@ -400,7 +678,7 @@
           </div>
         </div>
         <div class="case-links">
-          <a href="https://www.baeldung.com/ops/ci-cd-best-practices">Read the published article →</a>
+          <a href="https://www.baeldung.com/ops/ci-cd-best-practices">Read the published article &rarr;</a>
           <a href="https://github.com/Emminex23/docs-case-studies/tree/main/01-cicd-best-practices-baeldung">Full case study on GitHub</a>
         </div>
       </article>
@@ -408,7 +686,7 @@
       <article class="case">
         <div class="case-meta">
           <span class="case-platform">Baeldung</span>
-          <span class="case-tag">Kubernetes · observability · AI infra foundation</span>
+          <span class="case-tag">Kubernetes &middot; observability &middot; AI infra foundation</span>
         </div>
         <h3>Monitoring Kubernetes Pods with Prometheus — the guide that saves readers when their metrics don't show up</h3>
         <div class="case-grid">
@@ -426,7 +704,7 @@
           </div>
         </div>
         <div class="case-links">
-          <a href="https://www.baeldung.com/ops/prometheus-cpu-memory-kubernetes">Read the published article →</a>
+          <a href="https://www.baeldung.com/ops/prometheus-cpu-memory-kubernetes">Read the published article &rarr;</a>
           <a href="https://github.com/Emminex23/docs-case-studies/tree/main/02-k8s-prometheus-monitoring-baeldung">Full case study on GitHub</a>
         </div>
       </article>
@@ -434,7 +712,7 @@
       <article class="case">
         <div class="case-meta">
           <span class="case-platform">Cherry Servers</span>
-          <span class="case-tag">Architecture · decision doc · senior engineers</span>
+          <span class="case-tag">Architecture &middot; decision doc &middot; senior engineers</span>
         </div>
         <h3>OpenShift vs Kubernetes on Bare Metal — a decision framework engineering leads actually use</h3>
         <div class="case-grid">
@@ -452,16 +730,164 @@
           </div>
         </div>
         <div class="case-links">
-          <a href="https://www.cherryservers.com/blog/openshift-vs-kubernetes-on-bare-metal">Read the published article →</a>
+          <a href="https://www.cherryservers.com/blog/openshift-vs-kubernetes-on-bare-metal">Read the published article &rarr;</a>
           <a href="https://github.com/Emminex23/docs-case-studies/tree/main/03-openshift-vs-k8s-cherryservers">Full case study on GitHub</a>
         </div>
       </article>
 
     </div>
+
+    <div class="guarantee">
+      <div class="guarantee-icon">✦</div>
+      <div class="guarantee-body">
+        <h4>First-submission approval, or I revise at no extra cost.</h4>
+        <p>
+          My editorial approval rate is <strong>95%+</strong> across Baeldung, Vultr, and Cherry Servers — publications with some of the most demanding review standards in developer media. If your team sends your first draft back, I'll revise until it passes your internal review — no additional invoice, no negotiation.
+        </p>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<section id="bylines" style="background: var(--bg-elev);">
+<section id="how" style="background: var(--bg-elev);">
+  <div class="container">
+    <div class="section-eyebrow">How I Work Differently</div>
+    <h2>Three things that separate me from the average contract writer.</h2>
+    <p class="section-lead">
+      Hiring a technical writer usually means either (a) a strong writer who gets the code wrong, or (b) an engineer who can't write. Here's how I solve that problem.
+    </p>
+
+    <div class="diff-grid">
+      <div class="diff">
+        <div class="diff-num">01</div>
+        <h4>I build before I write.</h4>
+        <p>Every tutorial gets spun up in a real environment first — kind clusters, Docker Compose stacks, live API calls. If the code doesn't run on my laptop, it doesn't ship to your readers. This is why the approval rate is 95%+.</p>
+      </div>
+      <div class="diff">
+        <div class="diff-num">02</div>
+        <h4>I write for the decision, not the feature.</h4>
+        <p>Developers don't read docs to learn — they read to decide. My drafts anchor each section on a concrete decision ("fail vs. warn", "self-host vs. managed"), so readers leave with a RFC-ready recommendation, not a feature tour.</p>
+      </div>
+      <div class="diff">
+        <div class="diff-num">03</div>
+        <h4>I ship on your cadence, not mine.</h4>
+        <p>30+ hours/week availability, 0–4 hour response time, and a track record of zero missed deadlines across 100+ published pieces. You get editorial reliability without the agency price tag.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="section-eyebrow">Engagement Process</div>
+    <h2>What the first two weeks look like.</h2>
+    <p class="section-lead">
+      No surprise invoices. No week-long silence. Here's the exact sequence of steps between your initial message and your first published piece.
+    </p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-step">DAY 0 &middot; INITIAL CALL</div>
+        <h4>30-minute scoping call (free).</h4>
+        <p>Send the brief or the rough idea. We talk audience, outcomes, existing docs, and any constraints (style guide, CMS, internal reviewers). You leave with a written scope and a quote — not a vague estimate.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-step">DAY 1–2 &middot; SETUP</div>
+        <h4>Environment access and style-guide onboarding.</h4>
+        <p>I stand up a sandbox that mirrors your stack — cluster access, API keys, test accounts. I read your existing docs and any voice guide end-to-end before writing a single line.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-step">DAY 3–4 &middot; OUTLINE</div>
+        <h4>Detailed outline with the decisions mapped out.</h4>
+        <p>You approve the outline before I draft. It includes the argument arc, every code sample, and the specific claims each section needs to support. One revision round included.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-step">DAY 5–9 &middot; DRAFT</div>
+        <h4>I build the samples, then write the piece.</h4>
+        <p>Every snippet is validated in a runnable environment. Screenshots are freshly captured. The draft lands in your editor of choice (Google Docs, Notion, a PR) with inline notes on every non-obvious choice.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-step">DAY 10+ &middot; REVIEW &amp; PUBLISH</div>
+        <h4>Unlimited revisions until it passes your internal review.</h4>
+        <p>If your first-round review comes back clean, we're done. If it doesn't, I revise until it does — at no additional cost. That's the guarantee above, written into every scope of work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="background: var(--bg-elev);">
+  <div class="container">
+    <div class="section-eyebrow">Engagement Options</div>
+    <h2>Transparent starting points.</h2>
+    <p class="section-lead">
+      Every engagement gets a custom quote after the scoping call — but here are the floors so you can sanity-check your budget before reaching out.
+    </p>
+
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <h4>Single tutorial or deep-dive</h4>
+        <p class="price-desc">One piece, end-to-end. Best for evaluating a working relationship before a larger commitment.</p>
+        <div class="price-amount">
+          <span class="price-from">from</span>
+          <span class="price-num">$600</span>
+        </div>
+        <ul class="price-list">
+          <li>1,500–3,000 word tutorial or reference doc</li>
+          <li>Working code samples, validated end-to-end</li>
+          <li>Fresh screenshots + diagrams where useful</li>
+          <li>Outline approval + up to two revision rounds</li>
+          <li>First-submission guarantee applies</li>
+        </ul>
+        <a href="https://www.upwork.com/freelancers/~014ca5dc3609848174" class="btn btn-secondary">Start on Upwork</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-badge">Most popular</div>
+        <h4>Monthly docs retainer</h4>
+        <p class="price-desc">Embedded bandwidth for an ongoing docs roadmap. Best for teams shipping weekly.</p>
+        <div class="price-amount">
+          <span class="price-from">from</span>
+          <span class="price-num">$3,000</span>
+          <span class="price-unit">/mo</span>
+        </div>
+        <ul class="price-list">
+          <li>4–6 production-ready pieces per month</li>
+          <li>Weekly sync + async in your Slack/Notion</li>
+          <li>Style-guide ownership &amp; cross-doc consistency</li>
+          <li>Priority turnaround + launch-week flex capacity</li>
+          <li>Includes audit + roadmap at kickoff</li>
+        </ul>
+        <a href="https://www.upwork.com/freelancers/~014ca5dc3609848174" class="btn btn-primary">Start a retainer</a>
+      </div>
+
+      <div class="price-card">
+        <h4>Docs audit + strategy</h4>
+        <p class="price-desc">A one-week diagnosis of your existing docs with a prioritized action plan. No writing — just direction.</p>
+        <div class="price-amount">
+          <span class="price-from">from</span>
+          <span class="price-num">$1,200</span>
+        </div>
+        <ul class="price-list">
+          <li>Full audit of existing docs + IA</li>
+          <li>Gap analysis against your ICP's journey</li>
+          <li>Prioritized backlog with effort estimates</li>
+          <li>90-minute readout call with your team</li>
+          <li>Credit applied if you move into a retainer</li>
+        </ul>
+        <a href="https://www.upwork.com/freelancers/~014ca5dc3609848174" class="btn btn-secondary">Book an audit</a>
+      </div>
+
+    </div>
+
+    <p class="pricing-note">
+      Need tutorial videos, whitepapers, or something else? <a href="mailto:oyiboemmanuel2394@gmail.com">Email me for a custom quote</a>.
+    </p>
+  </div>
+</section>
+
+<section id="bylines">
   <div class="container">
     <div class="section-eyebrow">Selected Bylines</div>
     <h2>Where my work has been published.</h2>
@@ -472,47 +898,47 @@
       <a href="https://www.baeldung.com/author/emmanueloyibo" class="byline">
         <span class="byline-name">Baeldung</span>
         <span class="byline-desc">30+ DevOps, Linux, and CS deep dives for 10M+ monthly visitors</span>
-        <span class="byline-link">baeldung.com →</span>
+        <span class="byline-link">baeldung.com &rarr;</span>
       </a>
       <a href="https://docs.vultr.com/author/emmanuel-oyibo" class="byline">
         <span class="byline-name">Vultr Docs</span>
         <span class="byline-desc">Cloud infrastructure tutorials serving 1M+ developers</span>
-        <span class="byline-link">docs.vultr.com →</span>
+        <span class="byline-link">docs.vultr.com &rarr;</span>
       </a>
       <a href="https://www.cherryservers.com/blog/authors/emmanuel-oyibo" class="byline">
         <span class="byline-name">Cherry Servers</span>
-        <span class="byline-desc">50+ cloud infrastructure & bare-metal guides</span>
-        <span class="byline-link">cherryservers.com →</span>
+        <span class="byline-desc">50+ cloud infrastructure &amp; bare-metal guides</span>
+        <span class="byline-link">cherryservers.com &rarr;</span>
       </a>
       <a href="https://hostman.com/tutorials/authors/emmanuel-oyibo/" class="byline">
         <span class="byline-name">Hostman</span>
         <span class="byline-desc">Docker, Node.js, and Linux administration tutorials</span>
-        <span class="byline-link">hostman.com →</span>
+        <span class="byline-link">hostman.com &rarr;</span>
       </a>
       <a href="https://linuxopsys.com/author/emmanuelo" class="byline">
         <span class="byline-name">LinuxOpSys</span>
         <span class="byline-desc">Linux and Docker deep-dive tutorials</span>
-        <span class="byline-link">linuxopsys.com →</span>
+        <span class="byline-link">linuxopsys.com &rarr;</span>
       </a>
       <a href="https://smythos.com/people/emmanuel-oyibo/" class="byline">
         <span class="byline-name">SmythOS</span>
         <span class="byline-desc">AI agent development and orchestration docs</span>
-        <span class="byline-link">smythos.com →</span>
+        <span class="byline-link">smythos.com &rarr;</span>
       </a>
       <a href="https://www.mcpevals.io/" class="byline">
         <span class="byline-name">MCPevals.io</span>
         <span class="byline-desc">Model Context Protocol evaluation tooling — 40% onboarding-time reduction</span>
-        <span class="byline-link">mcpevals.io →</span>
+        <span class="byline-link">mcpevals.io &rarr;</span>
       </a>
       <a href="https://www.warp.dev/terminus" class="byline">
         <span class="byline-name">Terminus by Warp</span>
         <span class="byline-desc">Terminal and CLI tooling documentation</span>
-        <span class="byline-link">warp.dev →</span>
+        <span class="byline-link">warp.dev &rarr;</span>
       </a>
       <a href="https://emminex.hashnode.dev/" class="byline">
         <span class="byline-name">Hashnode</span>
         <span class="byline-desc">Personal technical blog</span>
-        <span class="byline-link">emminex.hashnode.dev →</span>
+        <span class="byline-link">emminex.hashnode.dev &rarr;</span>
       </a>
     </div>
   </div>
@@ -527,11 +953,11 @@
     </p>
     <div class="services-grid">
       <div class="service">
-        <h4>AI/ML & LLM documentation</h4>
+        <h4>AI/ML &amp; LLM documentation</h4>
         <p>Prompt engineering guides, agent frameworks, MCP server docs, RAG pipeline walkthroughs, and evaluation tooling documentation.</p>
       </div>
       <div class="service">
-        <h4>API & SDK documentation</h4>
+        <h4>API &amp; SDK documentation</h4>
         <p>OpenAPI/Swagger specs, reference guides, integration walkthroughs, and SDK launch content.</p>
       </div>
       <div class="service">
@@ -553,8 +979,70 @@
     </div>
 
     <div class="testimonial-block">
-      <p class="testimonial">"Emmanuel is awesome to work with. He needs minimal direction, does the work, meets the deadline, and there's no drama and no issues. I'm a returning customer."</p>
-      <p class="testimonial-attr">— Technical book editor · Python / Java / SQL / JavaScript project (via Upwork)</p>
+      <p class="testimonial">Emmanuel is awesome to work with. He needs minimal direction, does the work, meets the deadline, and there's no drama and no issues. I'm a returning customer.</p>
+      <p class="testimonial-attr">— Technical book editor &middot; Python / Java / SQL / JavaScript project (via Upwork)</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background: var(--bg-elev);">
+  <div class="container">
+    <div class="section-eyebrow">Frequently Asked</div>
+    <h2>Answers to the questions I get every week.</h2>
+    <p class="section-lead">
+      If something isn't covered here, email me — I'll answer within 4 hours during working days.
+    </p>
+
+    <div class="faq-list">
+      <details class="faq">
+        <summary>How quickly can you start?</summary>
+        <div class="faq-answer">
+          <p>For a single tutorial: usually within 3–5 business days of a signed scope. For a retainer: within the same or next sprint cycle, depending on your stack-access timeline. The 30-minute scoping call is always free and usually happens within 24 hours of your first message.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Do you work through Upwork or directly?</summary>
+        <div class="faq-answer">
+          <p>Both. Most clients start on Upwork because the reviews give them a clean risk profile — you can see the 5-star track record before you commit. For established retainers, direct contracts are fine once we've shipped together. Either way, the scope, deliverables, and guarantee are identical.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What if your first draft doesn't pass our internal review?</summary>
+        <div class="faq-answer">
+          <p>I revise it until it does, at no additional cost. This is written into every scope of work. The 95%+ first-submission approval rate is real — I'm betting on it with my time.</p>
+          <p>The only exception is if the brief changes substantially after the outline is signed off (e.g., new audience, different product line) — in which case we'll scope the change before I start revising.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Can you work inside our CMS / docs-as-code workflow?</summary>
+        <div class="faq-answer">
+          <p>Yes. I've shipped into WordPress, Contentful, Sanity, Notion, GitBook, Docusaurus, Mintlify, MkDocs, and raw Markdown-in-GitHub PR workflows. If it has a style guide and a review process, I can plug into it. I also respect your linting, Vale, and editorial checklists — those exist for a reason.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Do you do AI/ML and LLM documentation specifically?</summary>
+        <div class="faq-answer">
+          <p>That's most of my 2025–2026 work. I've documented prompt-engineering frameworks, MCP servers, RAG pipelines, agent orchestration, and LLM evaluation tooling (the MCPevals work cut onboarding time 40%). If your product involves agents, tools, or model evaluation, the learning curve is zero.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What time zones do you cover?</summary>
+        <div class="faq-answer">
+          <p>I'm based in West Africa (UTC+1), which overlaps 4+ hours with US East Coast, a full workday with EU, and the late evening with US West Coast. Response time during working hours is 0–4 hours; urgent launch-week messages get faster.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Are you represented by an agency?</summary>
+        <div class="faq-answer">
+          <p>No — you're hiring me directly. No account manager markup, no layer of translation between your engineers and the person writing. That's a feature: your feedback lands on my keyboard, not in a queue.</p>
+        </div>
+      </details>
     </div>
   </div>
 </section>
@@ -562,9 +1050,9 @@
 <section class="cta-footer">
   <div class="container">
     <h2>If your product is technical and your docs don't match, let's fix that.</h2>
-    <p>Response time: 0–4 hours · Availability: 30+ hrs/week · Time zones: US / EU friendly</p>
+    <p>Response time: 0–4 hours &middot; Availability: 30+ hrs/week &middot; Time zones: US / EU friendly</p>
     <div class="cta-buttons">
-      <a href="https://www.upwork.com/freelancers/~014ca5dc3609848174" class="btn btn-primary">Hire me on Upwork →</a>
+      <a href="https://www.upwork.com/freelancers/~014ca5dc3609848174" class="btn btn-primary">Hire me on Upwork &rarr;</a>
       <a href="mailto:oyiboemmanuel2394@gmail.com" class="btn btn-secondary">oyiboemmanuel2394@gmail.com</a>
     </div>
   </div>
@@ -572,7 +1060,7 @@
 
 <footer>
   <div class="container">
-    <div>© 2026 Emmanuel Oyibo · Built on GitHub Pages</div>
+    <div>&copy; <span id="footer-year">2026</span> Emmanuel Oyibo &middot; Built on GitHub Pages</div>
     <div class="footer-links">
       <a href="https://github.com/Emminex23">GitHub</a>
       <a href="https://www.linkedin.com/in/emmanueloyibo/">LinkedIn</a>
@@ -582,5 +1070,20 @@
   </div>
 </footer>
 
+<script>
+  (function () {
+    var now = new Date();
+    var availEl = document.getElementById('availability-date');
+    if (availEl) {
+      availEl.textContent = now.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+    }
+    var yearEl = document.getElementById('footer-year');
+    if (yearEl) {
+      yearEl.textContent = now.getFullYear();
+    }
+  })();
+</script>
+
 </body>
 </html>
+
