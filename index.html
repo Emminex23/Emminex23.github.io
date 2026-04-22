@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emmanuel Oyibo — Technical Writer for AI/ML & DevOps</title>
+<meta name="description" content="Technical writer specializing in AI/ML and DevOps documentation. 100+ articles across 9 platforms, 95% first-submission approval, 30% organic traffic lift.">
+<meta property="og:title" content="Emmanuel Oyibo — Technical Writer for AI/ML & DevOps">
+<meta property="og:description" content="API docs, tutorials, and video that developers actually finish. 100+ articles across Baeldung, Vultr, Cherry Servers, SmythOS, MCPevals, and more.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0d12;
+    --bg-elev: #11141c;
+    --bg-card: #151923;
+    --border: #1f2330;
+    --border-strong: #2a2f3e;
+    --text: #e8ebf2;
+    --text-muted: #9aa3b5;
+    --text-dim: #6b7385;
+    --accent: #7cffb0;
+    --accent-alt: #a5b4fc;
+    --warn: #fbbf24;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: 'ss01', 'cv01';
+  }
+  code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; transition: opacity 0.15s; }
+  a:hover { opacity: 0.8; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(11,13,18,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .container {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-brand { font-weight: 700; font-size: 0.95rem; letter-spacing: -0.01em; }
+  .nav-brand .dot { color: var(--accent); }
+  .nav-links { display: flex; gap: 1.75rem; align-items: center; }
+  .nav-links a { color: var(--text-muted); font-size: 0.875rem; font-weight: 500; }
+  .nav-links a:hover { color: var(--text); opacity: 1; }
+  .nav-cta {
+    background: var(--accent); color: #0b0d12 !important;
+    padding: 0.5rem 1rem; border-radius: 6px;
+    font-weight: 600; font-size: 0.875rem;
+  }
+  .nav-cta:hover { opacity: 0.9; }
+
+  /* HERO */
+  .hero { padding: 6rem 0 4rem; }
+  .hero-kicker {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--bg-card); border: 1px solid var(--border);
+    padding: 0.4rem 0.85rem; border-radius: 99px;
+    font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem;
+  }
+  .hero-kicker .pulse {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(124,255,176,0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(124,255,176,0.6); }
+    70% { box-shadow: 0 0 0 10px rgba(124,255,176,0); }
+    100% { box-shadow: 0 0 0 0 rgba(124,255,176,0); }
+  }
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
+  }
+  h1 .accent { color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    color: var(--text-muted);
+    max-width: 680px;
+    margin-bottom: 2rem;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+  .hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600; font-size: 0.9rem;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--accent); color: #0b0d12 !important; }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: var(--text) !important; border-color: var(--border-strong); }
+  .btn-secondary:hover { border-color: var(--text-muted); }
+
+  /* STATS */
+  .stats {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 0;
+    margin: 2rem 0 0;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .stat-num {
+    font-size: 2rem; font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.825rem; color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 0; }
+  .section-eyebrow {
+    font-size: 0.75rem; font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+  .section-lead {
+    color: var(--text-muted);
+    max-width: 640px;
+    margin-bottom: 3rem;
+    font-size: 1.025rem;
+  }
+
+  /* CASE STUDIES */
+  .cases { display: grid; gap: 1.25rem; }
+  .case {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .case:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .case-meta {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1rem; flex-wrap: wrap;
+  }
+  .case-platform {
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--accent-alt);
+    background: rgba(165,180,252,0.08);
+    border: 1px solid rgba(165,180,252,0.2);
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+  }
+  .case-tag {
+    font-size: 0.75rem; color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .case h3 {
+    font-size: 1.35rem; font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .case-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+  }
+  .case-cell h4 {
+    font-size: 0.7rem; font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+  .case-cell p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
+  .case-cell.outcome p { color: var(--text); }
+  .case-cell.outcome p strong { color: var(--accent); font-weight: 600; }
+  .case-links {
+    margin-top: 1.25rem; padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    font-size: 0.875rem;
+  }
+  .case-links a { font-weight: 500; }
+
+  /* BYLINES */
+  .bylines {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .byline {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.15rem 1.25rem;
+    display: flex; flex-direction: column; gap: 0.35rem;
+    transition: border-color 0.2s;
+  }
+  .byline:hover { border-color: var(--border-strong); }
+  .byline-name {
+    font-weight: 600; color: var(--text); font-size: 0.95rem;
+  }
+  .byline-desc {
+    font-size: 0.8rem; color: var(--text-muted); line-height: 1.45;
+  }
+  .byline-link {
+    font-size: 0.75rem; color: var(--accent); margin-top: 0.25rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .service {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .service h4 {
+    font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .service p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.55; }
+
+  /* TESTIMONIAL */
+  .testimonial-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+  }
+  .testimonial {
+    font-size: 1.05rem; color: var(--text);
+    font-style: italic; line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+  .testimonial-attr {
+    font-size: 0.825rem; color: var(--text-muted);
+  }
+
+  /* CTA FOOTER */
+  .cta-footer {
+    text-align: center;
+    padding: 5rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .cta-footer h2 { margin-bottom: 1rem; }
+  .cta-footer p { color: var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem; }
+  .cta-buttons { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.825rem;
+  }
+  footer .container {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: var(--text-dim); }
+  .footer-links a:hover { color: var(--text); opacity: 1; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { padding: 4rem 0 3rem; }
+    section { padding: 3.5rem 0; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .case-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .bylines { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .nav-links a:not(.nav-cta) { display: none; }
+    .case { padding: 1.5rem; }
+    .testimonial-block { padding: 1.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-brand">Emmanuel Oyibo<span class="dot">.</span></div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#bylines">Bylines</a>
+      <a href="#services">Services</a>
+      <a href="https://www.upwork.com/freelancers/~014ca5dc3609848174" class="nav-cta">Hire me</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-kicker">
+      <span class="pulse"></span>
+      Open to new retainers — April 2026
+    </div>
+    <h1>Technical writing for <span class="accent">AI/ML and DevOps</span> products that developers actually finish.</h1>
+    <p class="hero-sub">
+      I'm Emmanuel, a technical writer with 5+ years documenting infrastructure, LLM workflows, and developer platforms. I <strong>build every tutorial before I write it</strong> — which is why my first-submission editorial approval rate is 95%+ and my work has moved real metrics for clients like Cherry Servers and MCPevals.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://www.upwork.com/freelancers/~014ca5dc3609848174" class="btn btn-primary">Hire me on Upwork →</a>
+      <a href="mailto:oyiboemmanuel2394@gmail.com" class="btn btn-secondary">Email me</a>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div>
+          <div class="stat-num">100+</div>
+          <div class="stat-label">articles published across 9 developer platforms</div>
+        </div>
+        <div>
+          <div class="stat-num">95%</div>
+          <div class="stat-label">first-submission editorial approval rate</div>
+        </div>
+        <div>
+          <div class="stat-num">30%</div>
+          <div class="stat-label">organic traffic lift on the Cherry Servers blog (2025)</div>
+        </div>
+        <div>
+          <div class="stat-num">40%</div>
+          <div class="stat-label">reduction in onboarding time at MCPevals.io</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="container">
+    <div class="section-eyebrow">Featured Case Studies</div>
+    <h2>Three pieces that show how I think.</h2>
+    <p class="section-lead">
+      Not a link dump. Each case study breaks down the brief, the approach I took, and the measurable outcome — so you can judge the work, not just the byline.
+    </p>
+
+    <div class="cases">
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="case-platform">Baeldung</span>
+          <span class="case-tag">DevOps · decision framework · 10M+ monthly readers</span>
+        </div>
+        <h3>CI/CD Best Practices — a cornerstone reference for senior engineers designing pipelines</h3>
+        <div class="case-grid">
+          <div class="case-cell">
+            <h4>Brief</h4>
+            <p>Baeldung needed a reference a senior engineer could hand to their team — not another "what is CI/CD" explainer. Decision patterns, not tool walkthroughs.</p>
+          </div>
+          <div class="case-cell">
+            <h4>Approach</h4>
+            <p>Anchored each section on a decision ("fail vs. warn"), added recurring "why this matters at scale" callouts, validated every snippet in a real repo.</p>
+          </div>
+          <div class="case-cell outcome">
+            <h4>Outcome</h4>
+            <p><strong>First-submission approval</strong> (Baeldung's target is 2 rounds). Ranks on page 1 for head terms. Now part of their curated DevOps reference set.</p>
+          </div>
+        </div>
+        <div class="case-links">
+          <a href="https://www.baeldung.com/ops/ci-cd-best-practices">Read the published article →</a>
+          <a href="https://github.com/Emminex23/docs-case-studies/tree/main/01-cicd-best-practices-baeldung">Full case study on GitHub</a>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="case-platform">Baeldung</span>
+          <span class="case-tag">Kubernetes · observability · AI infra foundation</span>
+        </div>
+        <h3>Monitoring Kubernetes Pods with Prometheus — the guide that saves readers when their metrics don't show up</h3>
+        <div class="case-grid">
+          <div class="case-cell">
+            <h4>Brief</h4>
+            <p>A hands-on guide to pod-level CPU/memory monitoring with Prometheus. Runnable end-to-end on a local cluster, not a vendor pitch.</p>
+          </div>
+          <div class="case-cell">
+            <h4>Approach</h4>
+            <p>Opened with a mental-model map (metrics-server vs kube-state-metrics vs node-exporter). Tested every query on a real kind cluster. Added a "your metrics aren't showing up — here's why" section.</p>
+          </div>
+          <div class="case-cell outcome">
+            <h4>Outcome</h4>
+            <p><strong>First-submission approval.</strong> Steady organic traffic on head terms. Cross-linked as the canonical Baeldung reference for the topic.</p>
+          </div>
+        </div>
+        <div class="case-links">
+          <a href="https://www.baeldung.com/ops/prometheus-cpu-memory-kubernetes">Read the published article →</a>
+          <a href="https://github.com/Emminex23/docs-case-studies/tree/main/02-k8s-prometheus-monitoring-baeldung">Full case study on GitHub</a>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-meta">
+          <span class="case-platform">Cherry Servers</span>
+          <span class="case-tag">Architecture · decision doc · senior engineers</span>
+        </div>
+        <h3>OpenShift vs Kubernetes on Bare Metal — a decision framework engineering leads actually use</h3>
+        <div class="case-grid">
+          <div class="case-cell">
+            <h4>Brief</h4>
+            <p>Cherry Servers needed a decision doc that engineering leads could defend in a design review — not a vendor-neutral feature matrix.</p>
+          </div>
+          <div class="case-cell">
+            <h4>Approach</h4>
+            <p>Built the piece around four decision dimensions (cost, compliance, expertise, day-2 upgrades). Closed with a "choose X if…" table readers can lift into their own RFC.</p>
+          </div>
+          <div class="case-cell outcome">
+            <h4>Outcome</h4>
+            <p><strong>Durable traffic driver</strong> — part of the set that contributes ~30% of my organic referral traffic. Frequently cited in bare-metal Kubernetes discussions.</p>
+          </div>
+        </div>
+        <div class="case-links">
+          <a href="https://www.cherryservers.com/blog/openshift-vs-kubernetes-on-bare-metal">Read the published article →</a>
+          <a href="https://github.com/Emminex23/docs-case-studies/tree/main/03-openshift-vs-k8s-cherryservers">Full case study on GitHub</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="bylines" style="background: var(--bg-elev);">
+  <div class="container">
+    <div class="section-eyebrow">Selected Bylines</div>
+    <h2>Where my work has been published.</h2>
+    <p class="section-lead">
+      100+ articles across 9 developer platforms. These are the ones worth bookmarking.
+    </p>
+    <div class="bylines">
+      <a href="https://www.baeldung.com/author/emmanueloyibo" class="byline">
+        <span class="byline-name">Baeldung</span>
+        <span class="byline-desc">30+ DevOps, Linux, and CS deep dives for 10M+ monthly visitors</span>
+        <span class="byline-link">baeldung.com →</span>
+      </a>
+      <a href="https://docs.vultr.com/author/emmanuel-oyibo" class="byline">
+        <span class="byline-name">Vultr Docs</span>
+        <span class="byline-desc">Cloud infrastructure tutorials serving 1M+ developers</span>
+        <span class="byline-link">docs.vultr.com →</span>
+      </a>
+      <a href="https://www.cherryservers.com/blog/authors/emmanuel-oyibo" class="byline">
+        <span class="byline-name">Cherry Servers</span>
+        <span class="byline-desc">50+ cloud infrastructure & bare-metal guides</span>
+        <span class="byline-link">cherryservers.com →</span>
+      </a>
+      <a href="https://hostman.com/tutorials/authors/emmanuel-oyibo/" class="byline">
+        <span class="byline-name">Hostman</span>
+        <span class="byline-desc">Docker, Node.js, and Linux administration tutorials</span>
+        <span class="byline-link">hostman.com →</span>
+      </a>
+      <a href="https://linuxopsys.com/author/emmanuelo" class="byline">
+        <span class="byline-name">LinuxOpSys</span>
+        <span class="byline-desc">Linux and Docker deep-dive tutorials</span>
+        <span class="byline-link">linuxopsys.com →</span>
+      </a>
+      <a href="https://smythos.com/people/emmanuel-oyibo/" class="byline">
+        <span class="byline-name">SmythOS</span>
+        <span class="byline-desc">AI agent development and orchestration docs</span>
+        <span class="byline-link">smythos.com →</span>
+      </a>
+      <a href="https://www.mcpevals.io/" class="byline">
+        <span class="byline-name">MCPevals.io</span>
+        <span class="byline-desc">Model Context Protocol evaluation tooling — 40% onboarding-time reduction</span>
+        <span class="byline-link">mcpevals.io →</span>
+      </a>
+      <a href="https://www.warp.dev/terminus" class="byline">
+        <span class="byline-name">Terminus by Warp</span>
+        <span class="byline-desc">Terminal and CLI tooling documentation</span>
+        <span class="byline-link">warp.dev →</span>
+      </a>
+      <a href="https://emminex.hashnode.dev/" class="byline">
+        <span class="byline-name">Hashnode</span>
+        <span class="byline-desc">Personal technical blog</span>
+        <span class="byline-link">emminex.hashnode.dev →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-eyebrow">Services</div>
+    <h2>What I build for clients.</h2>
+    <p class="section-lead">
+      I specialize in AI/ML documentation backed by deep DevOps chops — so I can document both the model <em>and</em> the infrastructure it rides on.
+    </p>
+    <div class="services-grid">
+      <div class="service">
+        <h4>AI/ML & LLM documentation</h4>
+        <p>Prompt engineering guides, agent frameworks, MCP server docs, RAG pipeline walkthroughs, and evaluation tooling documentation.</p>
+      </div>
+      <div class="service">
+        <h4>API & SDK documentation</h4>
+        <p>OpenAPI/Swagger specs, reference guides, integration walkthroughs, and SDK launch content.</p>
+      </div>
+      <div class="service">
+        <h4>Developer tutorials</h4>
+        <p>Docker, Kubernetes, CI/CD, Linux, and cloud infrastructure — built before they're written, validated on real clusters.</p>
+      </div>
+      <div class="service">
+        <h4>SaaS product docs</h4>
+        <p>Onboarding flows, help centers, and knowledge-base architecture that reduces support load.</p>
+      </div>
+      <div class="service">
+        <h4>Technical tutorial videos</h4>
+        <p>Product walkthroughs, feature demos, and code-along screencasts that pair with written docs.</p>
+      </div>
+      <div class="service">
+        <h4>Long-form content</h4>
+        <p>Whitepapers, architecture deep-dives, release notes, and SEO-optimized cornerstone pieces.</p>
+      </div>
+    </div>
+
+    <div class="testimonial-block">
+      <p class="testimonial">"Emmanuel is awesome to work with. He needs minimal direction, does the work, meets the deadline, and there's no drama and no issues. I'm a returning customer."</p>
+      <p class="testimonial-attr">— Technical book editor · Python / Java / SQL / JavaScript project (via Upwork)</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-footer">
+  <div class="container">
+    <h2>If your product is technical and your docs don't match, let's fix that.</h2>
+    <p>Response time: 0–4 hours · Availability: 30+ hrs/week · Time zones: US / EU friendly</p>
+    <div class="cta-buttons">
+      <a href="https://www.upwork.com/freelancers/~014ca5dc3609848174" class="btn btn-primary">Hire me on Upwork →</a>
+      <a href="mailto:oyiboemmanuel2394@gmail.com" class="btn btn-secondary">oyiboemmanuel2394@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 Emmanuel Oyibo · Built on GitHub Pages</div>
+    <div class="footer-links">
+      <a href="https://github.com/Emminex23">GitHub</a>
+      <a href="https://www.linkedin.com/in/emmanueloyibo/">LinkedIn</a>
+      <a href="https://github.com/Emminex23/docs-case-studies">Case studies</a>
+      <a href="https://emminex.hashnode.dev/">Blog</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
